@@ -11,6 +11,7 @@ import com.project.teste.response.PlanetResponse;
 import com.project.teste.response.PlanetsSwapiResponse;
 import com.project.teste.util.IntegrationSwApiUtil;
 import com.project.teste.util.PropertiesUtil;
+import com.project.teste.util.StringUtil;
 import com.project.teste.vo.PlanetVO;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +25,7 @@ public class IntegrationService {
 	private static final String URL_PLANET = PropertiesUtil.getUrlValue("url.integration.planet");
 	 
 	 public void loadNumberMovies(PlanetVO vo) throws DomainException{
-		 if(vo !=null && vo.getName() !=null && !vo.getName().isBlank()) {
+		 if(vo !=null && StringUtil.isValid(vo.getName()) ) {
 			  PlanetResponse planet = findPlanetSW(vo.getName());
 			  loadNumberMoviesInPlanet(vo, planet);
 		 }

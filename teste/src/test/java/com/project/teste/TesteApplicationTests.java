@@ -78,10 +78,10 @@ class TesteApplicationTests {
 	
 	@Test
 	public void testFindByName() throws DomainException {
-		PlanetVO planet = savePlanet(null);
+		PlanetVO planet = savePlanet("Planeta Teste");
 		List<PlanetVO> planets = planetService.findByName(planet.getName());
-		assertTrue(planets !=null && planets.size() >0, "Erro FindBynName: retornou vazio");
-		assertTrue(existPlanetName(planets, planet.getName()), "Erro listAll: Não retornou planeta criado");
+		assertTrue(planets !=null && planets.size() >0, "Erro FindByName: retornou vazio");
+		assertTrue(existPlanetName(planets, planet.getName()), "Erro FindByName: Não retornou planeta criado");
 		removePlanet(planet.getId());
 	}
 	
@@ -110,7 +110,7 @@ class TesteApplicationTests {
 		planetWithId.setClimate(planetRequest.getClimate());
 		planetWithId.setGround(planetRequest.getGround());
 		planetWithId.setId(id);
-		planetWithId.setName(planetWithId.getName());
+		planetWithId.setName(planetRequest.getName());
 		return planetWithId;
 	}
 	
