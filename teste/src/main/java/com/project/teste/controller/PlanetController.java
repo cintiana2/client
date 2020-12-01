@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,16 @@ public class PlanetController
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@RequestBody PlanetRequestVO planet) {
+		try {
+			Long id = planetService.save(planet);
+			return ResponseEntity.ok(id);
+		} catch (DomainException e) {
+			return catchExceptionDomain(e);
+		}
+	}
+	
+	@PutMapping
+	public ResponseEntity<?> updated(@RequestBody PlanetRequestVO planet) {
 		try {
 			Long id = planetService.save(planet);
 			return ResponseEntity.ok(id);

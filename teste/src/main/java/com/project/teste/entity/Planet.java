@@ -55,6 +55,7 @@ public class Planet {
   		this.ground = planet.getGround();
   		this.climate = planet.getClimate();
   		this.name = planet.getName();
+  		this.id = planet.getId();
   	}
 
 
