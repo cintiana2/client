@@ -1,3 +1,4 @@
+Em vez de fazer as coisas com mock e por já ter um projeto real com acesso a banco, e uma api externa, preferi mandar esse código: 
 -Esta aplicação foi desenvolvida com o java 11.
 -As suas dependências foram configuradas com Maven.
 -O banco de dados é oracle, e antes de rodar a aplicação rode o script "script.sql" no banco de dados, esse script está na pasta inicial do projeto.
