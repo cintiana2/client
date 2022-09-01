@@ -20,7 +20,6 @@ import com.project.client.repository.ClientRepository;
 import com.project.client.util.AddressUtil;
 import com.project.client.util.StringUtil;
 import com.project.client.util.enums.StatusClientEnum;
-import com.project.client.vo.ClientRequestVO;
 import com.project.client.vo.ClientVO;
 import com.project.client.vo.SimpleClientVO;
 
@@ -31,7 +30,7 @@ public class ClientService {
 	private ClientRepository repository;
 
 
-	public Long save(ClientRequestVO vo) throws DomainException {
+	public Long save(ClientVO vo) throws DomainException {
 		if (StringUtil.isValid(vo.getName()) && vo.getBirthday() != null) {
 			Client client = new Client(vo);
 			try {
@@ -58,11 +57,13 @@ public class ClientService {
 
 	public void logicalDelete(Long id) throws DomainException {
 		try {
-
-			Client client = repository.getOne(id);
-			if (client != null) {
-				client.setStatus(StatusClientEnum.DISABLE);
-				repository.save(client);
+			ClientVO vo = getById(id);
+			if(vo !=null) {
+				Client client = new Client(vo);
+				if (client != null) {
+					client.setStatus(StatusClientEnum.DISABLE);
+					repository.save(client);
+				}
 			}
 		} catch (Exception e) {
 			throw new DomainException(e.getLocalizedMessage());
@@ -71,9 +72,8 @@ public class ClientService {
 
 	public ClientVO getById(Long id) throws DomainException {
 		try {
-			Client client = repository.getOne(id);
-
-			return new ClientVO(client);
+			
+			return repository.getVoById(id);
 
 		} catch (EntityNotFoundException e) {
 			return null;

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.client.exception.DomainException;
 import com.project.client.service.ClientService;
-import com.project.client.vo.ClientRequestVO;
+import com.project.client.vo.ClientVO;
 
 @RestController
 @RequestMapping(value = "/api/v1/client")
@@ -38,7 +38,7 @@ public class ClientController
 	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> create(@RequestBody ClientRequestVO client) {
+	public ResponseEntity<?> create(@RequestBody ClientVO client) {
 		try {
 			Long id = clientService.save(client);
 			return ResponseEntity.ok(id);
@@ -55,7 +55,7 @@ public class ClientController
 	 * @return
 	 */
 	@PutMapping 
-	public ResponseEntity<?> updated(@RequestBody ClientRequestVO client) {
+	public ResponseEntity<?> updated(@RequestBody ClientVO client) {
 		try {
 			if(client.getId() !=null) 
 			{

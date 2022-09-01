@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.project.client.entity.Client;
+import com.project.client.vo.ClientVO;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
@@ -46,5 +47,9 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	
 	@Query("SELECT c.id from Client c WHERE c.email = :email ")
     Long getIdClienteByEmail(String email);
+	
+	@Query("select new com.project.client.vo.ClientVO(c) from Client c"
+			+ " where c.id = :id ")
+	ClientVO getVoById(Long id);
 
 }

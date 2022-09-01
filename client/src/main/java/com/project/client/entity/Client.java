@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 import org.hibernate.validator.constraints.Length;
 
 import com.project.client.util.enums.StatusClientEnum;
-import com.project.client.vo.ClientRequestVO;
+import com.project.client.vo.ClientVO;
 
 @Entity
 public class Client {
@@ -57,7 +57,7 @@ public class Client {
 		
 	}
     
-    public Client(ClientRequestVO vo) {
+    public Client(ClientVO vo) {
     	this.id = vo.getId();
 		this.name = vo.getName();
 		this.email = vo.getEmail();
