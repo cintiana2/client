@@ -16,9 +16,9 @@ import com.project.client.vo.integration.FUIbgeVO;
 
 
 @Service
-public class AdressIntegrationService {
+public class AddressIntegrationService {
 	
-	private static Logger logger = LogManager.getLogger(AdressIntegrationService.class);
+	private static Logger logger = LogManager.getLogger(AddressIntegrationService.class);
 	
 	private static final String URL_FUS = PropertiesUtil.getUrlValue("url.integration.ibge.fus");
 	private static final String URL_CITY = PropertiesUtil.getUrlValue("url.integration.ibge.cities");
@@ -36,7 +36,7 @@ public class AdressIntegrationService {
 		String url = URL_FUS;
 
 		try {
-			List<FUIbgeVO> allFus = new GenericIntegrationApiUtil<FUIbgeVO>().realizeCallList(url);
+			List<FUIbgeVO> allFus = new GenericIntegrationApiUtil<FUIbgeVO>().realizeCallList(url, FUIbgeVO[].class);
 			return allFus;
 		} catch (Exception e) {
 			logger.error("Erro ao carregar estados", e);
@@ -53,7 +53,7 @@ public class AdressIntegrationService {
 		String url =  MessageFormat.format( URL_CITY, idFU);
 
 		try {
-			List<CityIbgeVO> cities = new GenericIntegrationApiUtil<CityIbgeVO>().realizeCallList(url);
+			List<CityIbgeVO> cities = new GenericIntegrationApiUtil<CityIbgeVO>().realizeCallList(url, CityIbgeVO[].class);
 			return cities;
 		} catch (Exception e) {
 			logger.error("Erro ao carregar cidades", e);

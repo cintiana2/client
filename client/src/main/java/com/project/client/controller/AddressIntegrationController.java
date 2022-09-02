@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.client.exception.DomainException;
-import com.project.client.service.AdressIntegrationService;
+import com.project.client.service.AddressIntegrationService;
 
 /**
  * Classe para ajudar preencher endereços, pode ser usada para chamadas
@@ -21,7 +21,7 @@ import com.project.client.service.AdressIntegrationService;
 public class AddressIntegrationController
 {
 	@Autowired
-	private AdressIntegrationService service;
+	private AddressIntegrationService service;
 	
 	@GetMapping("/ufs")
 	public ResponseEntity<?> listUfs() {

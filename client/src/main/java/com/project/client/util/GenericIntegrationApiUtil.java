@@ -2,10 +2,12 @@ package com.project.client.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -39,6 +41,12 @@ public class GenericIntegrationApiUtil<T> {
 		return httpEntity;
 	}
 
+	/**
+	 * Tem que passar como parâmetro a class de retorno
+	 * @param url
+	 * @param classResponse
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public T realizeCallOneObject(String url, Class classResponse){
 		
@@ -48,13 +56,26 @@ public class GenericIntegrationApiUtil<T> {
 
 	}
 	
+	
+	/**
+	 * Tem que passar como parâmetro em classResponse como o array  da classe retorno de retorno T[]
+	 * @param url
+	 * @param classResponse
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
-	public List<T> realizeCallList(String url){
+	public List<T> realizeCallList(String url, Class classResponse){
 		
 		RestTemplate restTemplate = new RestTemplate();
 		logger.info("Chamando url: " + url);
-		return (List<T>)restTemplate.exchange(url, HttpMethod.GET, createHeaderGet(), List.class).getBody();
-
+	
+		T[] array = (T[]) restTemplate.getForEntity(url,classResponse, createHeaderGet()).getBody();
+		
+		 if(array !=null) {
+			 return Arrays.asList(array);
+		 }
+		 
+		 return null;
 	}
 
 }
