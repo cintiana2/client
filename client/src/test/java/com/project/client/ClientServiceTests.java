@@ -63,6 +63,7 @@ class ClientServiceTests {
 	@Test
 	public void testUpdateClient() throws DomainException {
 	  ClientVO client = saveClient("Jose", null,false);
+	  
 	  long id = client.getId();
 	  client =clientService.getById(id);
 	  String oldName = client.getName();
@@ -71,6 +72,7 @@ class ClientServiceTests {
 	  clientService.save(client);
 	  client = clientService.getById(id);
 	  assertTrue( "Erro ao editar Cliente", !oldName.equals(client.getName()) || newName.equals(client.getName()));
+	  
 	  removeClient(id);
 	 }
 	

@@ -1,7 +1,5 @@
 package com.project.client.util;
 
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang3.StringUtils;
 
 public class AddressUtil {

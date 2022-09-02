@@ -56,7 +56,6 @@ public class GenericIntegrationApiUtil<T> {
 
 	}
 	
-	
 	/**
 	 * Tem que passar como parâmetro em classResponse como o array  da classe retorno de retorno T[]
 	 * @param url

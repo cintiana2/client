@@ -65,7 +65,6 @@ public class Address {
 		this.district = vo.getDistrict();
 	 }
 
-
 	public Address(Long id, @Length(max = 200) String city, @Length(max = 2) String fu, Integer number,
 			@Length(max = 200) String complement, @Length(max = 100) String district, @Length(max = 100) String country,
 			@Length(max = 8) String zipcode) {

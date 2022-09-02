@@ -47,8 +47,7 @@ class AddressIntegrationServiceTests {
 		if(ufs!= null && ufs.size() >0) {
 			List<CityIbgeVO> cities = service.listCityByFU(ufs.get(0).getId());
 			assertTrue("Erro ao buscar cidades", cities!= null && cities.size() >0);
-		}
-			
+		}	
 		
 	}
 
