@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.client.exception.DomainException;
 import com.project.client.service.AdressIntegrationService;
 
+/**
+ * Classe para ajudar preencher endereços, pode ser usada para chamadas
+ * paralelas, mas seu uso não é obrigatório
+ * @author cintia
+ *
+ */
 @RestController
 @RequestMapping(value = "/api/v1/util/adress")
 public class AddressIntegrationController

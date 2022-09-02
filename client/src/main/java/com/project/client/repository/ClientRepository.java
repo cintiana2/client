@@ -51,5 +51,9 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	@Query("select new com.project.client.vo.ClientVO(c) from Client c"
 			+ " where c.id = :id ")
 	ClientVO getVoById(Long id);
+	
+	@Query(" select new com.project.client.vo.ClientVO(c) from Client c "
+			+ " where c.id = :id and  c.status = 'ENABLE' ")
+	ClientVO getActiveVoById(Long id);
 
 }

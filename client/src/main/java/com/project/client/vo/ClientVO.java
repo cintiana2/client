@@ -15,8 +15,6 @@ public class ClientVO {
 
 	private LocalDate birthday;
 
-	private Integer age;
-
 	private AddressVO adress;
 
 	public ClientVO() {
@@ -31,7 +29,6 @@ public class ClientVO {
 	}
 
 	public ClientVO(Client client) {
-		this.age = client.getAge();
 		this.birthday = client.getBirthday();
 		this.email = client.getEmail();
 		this.id = client.getId();
@@ -86,11 +83,7 @@ public class ClientVO {
 			return Period.between(this.getBirthday(), LocalDate.now()).getYears();
 		}
 		
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
+		return null;
 	}
 
 }

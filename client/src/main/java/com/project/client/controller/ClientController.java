@@ -87,7 +87,7 @@ public class ClientController
 	
 	/**
 	 * Caso se opte pela exclusão lógica, esse metódo
-	 * pode ser usado para excluir em vez de acima, pois
+	 * pode ser usado para excluir em vez do acima, pois
 	 * muda de ativo para inativo
 	 * @param id
 	 * @return
@@ -102,7 +102,26 @@ public class ClientController
 		}
 	}
 	
+	/**
+	 * retorna se existir independente de status
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
+	public ResponseEntity<?> getActiveClientById(@PathVariable Long id) {
+		
+		try {
+			return ResponseEntity.ok(clientService.getActiveClientById(id));
+		} catch (DomainException e) {
+			return catchExceptionDomain(e);
+		}
+	}
+	/**
+	 * retorna se existis e se estiver ativo
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/active/{id}")
 	public ResponseEntity<?> getById(@PathVariable Long id) {
 		
 		try {

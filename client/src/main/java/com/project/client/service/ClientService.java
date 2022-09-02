@@ -55,6 +55,11 @@ public class ClientService {
 		}
 	}
 
+	/**
+	 * disable client
+	 * @param id
+	 * @throws DomainException
+	 */
 	public void logicalDelete(Long id) throws DomainException {
 		try {
 			ClientVO vo = getById(id);
@@ -70,6 +75,12 @@ public class ClientService {
 		}
 	}
 
+	/**
+	 * Get client in all status
+	 * @param id
+	 * @return
+	 * @throws DomainException
+	 */
 	public ClientVO getById(Long id) throws DomainException {
 		try {
 			
@@ -79,7 +90,29 @@ public class ClientService {
 			return null;
 		}
 	}
+	
+	/**
+	 * Show only client is enable
+	 * @param id
+	 * @return
+	 * @throws DomainException
+	 */
+	public ClientVO getActiveClientById(Long id) throws DomainException {
+		try {
+			
+			return repository.getActiveVoById(id);
 
+		} catch (EntityNotFoundException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Search Only enable clients
+	 * @param page
+	 * @param size
+	 * @return
+	 */
 	public Page<SimpleClientVO> list(int page, int size) {
 		
 		Pageable pageable = createPageable(page, size);
@@ -88,7 +121,14 @@ public class ClientService {
 		return trasformPageClientInPageVO(pageable, pageClient);
 
 	}
-
+	
+	/**
+	 * Search Only enable clients
+	 * @param email
+	 * @param page
+	 * @param size
+	 * @return
+	 */
 	public Page<SimpleClientVO> searchByEmail(String email, int page, int size) {
 		Pageable pageable = createPageable(page, size);
 		Page<Client> pageClient = repository.listActiveClientsByEmail(email, pageable);
@@ -97,6 +137,14 @@ public class ClientService {
 
 	}
 	
+	/**
+	 * Search Only enable clients
+	 * @param name
+	 * @param email
+	 * @param page
+	 * @param size
+	 * @return
+	 */
 	public Page<SimpleClientVO> searchByNameAndEmail(String name, String email, int page, int size) {
 		Pageable pageable = createPageable(page, size);
 		Page<Client> pageClient = repository.listActiveClientsByNameAndEmail(name,email, pageable);
@@ -105,6 +153,14 @@ public class ClientService {
 
 	}
 	
+	/**
+	 * Search Only enable clients
+	 * @param begin
+	 * @param end
+	 * @param page
+	 * @param size
+	 * @return
+	 */
 	public Page<SimpleClientVO> searchByBirthday(LocalDate begin, LocalDate end, int page, int size) {
 		Pageable pageable = createPageable(page, size);
 		Page<Client> pageClient = repository.listActiveClientsByBirthday(begin, end,pageable);
@@ -113,6 +169,14 @@ public class ClientService {
 
 	}
 	
+	/**
+	 * Search Only enable clients
+	 * @param name
+	 * @param email
+	 * @param page
+	 * @param size
+	 * @return
+	 */
 	public Page<SimpleClientVO> searchByName(String name, int page, int size) {
 		Pageable pageable = createPageable(page, size);
 		Page<Client> pageClient = repository.listActiveClientsByName(name, pageable);
